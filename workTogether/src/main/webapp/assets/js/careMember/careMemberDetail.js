@@ -140,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// 후기 목록 불러오기
 	async function loadComments() {
 		if (!careNumber) return;
-
 		try {
 			const res = await fetch(`/comment/commentListOk.co?careNumber=${encodeURIComponent(careNumber)}`, {
 				headers: {
@@ -148,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					"X-Requested-With": "XMLHttpRequest",
 				},
 			});
-			if (!res.ok) throw new Error("후기 목록을 불러오는 데 실패했습니다.");
+			if (!res.ok) throw new Error("후기 목록을 불러오는데 실패했습니다. res.ok 오류");
 			const comments = await safeJson(res);
 			renderComments(Array.isArray(comments) ? comments : []);
 		} catch (error) {
@@ -156,20 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			alert("후기 목록을 불러오는데 실패했습니다.");
 		}
 	}
-
+	
 	// 후기 렌더링
 	function renderComments(comments) {
 		if (!commentListEl) return;
-
 		commentListEl.innerHTML = "";
-
 		if (!comments.length) {
 			commentListEl.innerHTML = "<li>후기가 없습니다.</li>";
 			return;
 		}
-
 		const frag = document.createDocumentFragment();
-
 		let num = 1;
 		comments.forEach((comment) => {
 			const isMyComment = String(comment.normalNumber) === String(normalNumber);
@@ -188,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			`;
 			frag.appendChild(li);
 		});
-
 		commentListEl.appendChild(frag);
 	}
 

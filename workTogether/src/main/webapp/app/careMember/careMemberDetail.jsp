@@ -39,7 +39,7 @@
 							<!-- 프로필 사진 -->
 							<div class="profile_pic_frame">
 								<img class="profile_pic"
-									src="${pageContext.request.contextPath}/assets/img/careMember/profilePicCare.png">
+									src="${pageContext.request.contextPath}/${care.getProfilesFilesPath() }/${care.getProfilesFilesName()}.${care.getProfilesFilesType()}">
 							</div>
 							<!-- 프로필 정보 칸 -->
 							<div class="profile_intro">
